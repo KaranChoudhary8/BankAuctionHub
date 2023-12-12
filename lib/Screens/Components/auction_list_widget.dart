@@ -2,6 +2,7 @@ import 'package:bank_auction_hub/Functions/firebase_getter.dart';
 import 'package:bank_auction_hub/Models/auction_detail_model.dart';
 import 'package:bank_auction_hub/Screens/Components/auction_card_widget.dart';
 import 'package:bank_auction_hub/Settings/constants.dart';
+import 'package:bank_auction_hub/Settings/responsive.dart';
 import 'package:bank_auction_hub/bloc/list_to_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -56,6 +57,9 @@ class AuctionListWidget extends StatelessWidget {
                                 onTap: () {
                                   myListtoDetailCubit.userClickedonListCard(
                                       index: item, model: detailModel[item]);
+                                    if (Responsive.isMobile(context)){
+                                      Navigator.pushNamed(context, detailScreenRoute);
+                                    }
                                 },
                                 child: AuctionCardWidget(
                                     isActive: state.selectedIndex == item

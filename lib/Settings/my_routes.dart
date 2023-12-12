@@ -1,4 +1,5 @@
 // class CustomRoutes extends Route
+import 'package:bank_auction_hub/Screens/Components/auction_details_widget.dart';
 import 'package:bank_auction_hub/Screens/add.dart';
 import 'package:bank_auction_hub/Screens/forgot_screen.dart';
 import 'package:bank_auction_hub/Screens/home.dart';
@@ -15,12 +16,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MyRoute {
+  static final ListToDetailCubit listToDetailCubit = ListToDetailCubit();
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case homeScreenRoute:
         return MaterialPageRoute(
-            builder: (_) => BlocProvider(
-                  create: (context) => ListToDetailCubit(),
+            builder: (_) => BlocProvider.value(
+                  value: listToDetailCubit,
                   child: const HomeScreen(),
                 ));
 
@@ -61,6 +63,14 @@ class MyRoute {
         return MaterialPageRoute(
             builder: (_) => const Scaffold(
                   body: Center(child: Text("Kaise h aap log")),
+                ));
+
+      //mobile only
+      case detailScreenRoute:
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider.value(
+                  value: listToDetailCubit,
+                  child: const AuctionDetailsWidget(),
                 ));
       default:
         return MaterialPageRoute(builder: (_) => const HomeScreen());

@@ -56,6 +56,7 @@ const adminScreenRoute = '/admin';
 const usersScreenRoute = '/users';
 const profileScreenRoute = '/profile';
 const errorScreenRoute = '/404';
+const detailScreenRoute = '/detail';
 
 //Custom decorations
 OutlineInputBorder myInputBorder = OutlineInputBorder(
